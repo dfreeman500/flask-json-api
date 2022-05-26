@@ -1,7 +1,6 @@
 import webbrowser
 from flask import Flask, request
 import json
-
 from matplotlib.font_manager import json_dump
 
 with open('data.json') as data:
