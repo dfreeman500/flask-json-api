@@ -13,6 +13,9 @@ Tasks Include:
 
 
 Testing done through Postman (downloaded version to test on local machine)
+#
+![Postman-gif](images/postman.gif)
+
 
 Some references:
 * https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10
