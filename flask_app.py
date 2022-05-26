@@ -1,5 +1,5 @@
 import webbrowser
-from flask import Flask
+from flask import Flask, request
 import json
 
 from matplotlib.font_manager import json_dump
@@ -17,24 +17,41 @@ def list_of_recipe_names():
 
 @app.route('/')
 def hello():
-
     return '<h1>Hello, World!</h1>'
 
 @app.route('/recipes',methods=['GET'])
 def get_recipes():
+    return {"recipeNames": list_of_recipe_names()}, 200
 
-    return {"recipeNames": list_of_recipe_names()}
-    
 
 @app.route('/recipes/details/<recipe>',methods=['GET'])
-def get_recipe(recipe):    
-    index = list_of_recipe_names().index(recipe)
-    print(index)
-    return {"details": { "ingredients": data['recipes'][index]["ingredients"], "numSteps": len(data['recipes'][index]["instructions"])}}
+def get_recipe(recipe):
+    try:    
+        index = list_of_recipe_names().index(recipe)
+        print(index)
+        return {"details": { "ingredients": data['recipes'][index]["ingredients"], "numSteps": len(data['recipes'][index]["instructions"])}}, 200
+    except:
+        return {}, 200
+
+
+
+@app.route('/recipes',methods=['POST'])
+def post_recipes():
+    if request.json["name"] in list_of_recipe_names():
+        return {"error": "Recipe already exists" }, 400
+    data['recipes'].append(request.json)
+    return "", 201
     
-    return "Response body (JSON): {} Status: 200"
 
-
+@app.route('/recipes',methods=['PUT'])
+def edit_recipe():
+    try:
+        index = list_of_recipe_names().index(request.json["name"])
+        data["recipes"][index] = request.json
+        return "", 204
+    except:
+        return {"error": "Recipe does not exist" }, 404
+   
 
 if __name__ == "__main__":
     pass
