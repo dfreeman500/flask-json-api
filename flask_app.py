@@ -1,10 +1,12 @@
 import webbrowser
-from flask import Flask, request
+from flask import Flask
 import json
-from matplotlib.font_manager import json_dump
+from requests import request
 
 with open("data.json") as data:
     data = json.load(data)
+
+
 
 app = Flask(__name__)
 
