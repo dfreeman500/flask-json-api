@@ -1,7 +1,6 @@
 # flask-json-api
 
 The goals of this project were simply to:
-* Set up a virtual environment to run this project
 * Create a flask json api that is able to accomplish several tasks as described on:
 https://hatchways.notion.site/hatchways/Back-End-Practice-Assessment-0a110db665384575a94d93faab787f0e
 Tasks Include:
